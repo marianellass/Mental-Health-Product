@@ -1,9 +1,11 @@
+"""This page is used for the webapp for the logitic model"""
+
 import streamlit as st
 import numpy as np
 import pandas as pd
 import pickle
 
-# Load the model and scaler (assuming both burnout and anxiety use the same model)
+# Load the model and scaler
 with open('logistic_regression_model.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
@@ -13,7 +15,6 @@ with open('scaler.pkl', 'rb') as scaler_file:
 
 st.title("Burnout/Anxiety Prediction Web App")
 
-# Input fields for the features
 age = st.number_input("Age", min_value=18, max_value=100, value=30)
 work_location = st.selectbox("Work Location", ["Remote", "Hybrid", "Onsite"])
 hours_worked_per_week = st.number_input("Hours Worked Per Week", min_value=10, max_value=80, value=40)
@@ -35,7 +36,6 @@ physical_activity_encoded = {"Weekly": 0, "None": 1}[physical_activity]
 sleep_quality_encoded = {"Good": 0, "Average": 1, "Poor": 2}[sleep_quality]
 region_encoded = {"North America": 0, "Europe": 1, "Asia": 2, "South America": 3}[region]
 
-# Define feature names (these must match the features used when the scaler was fitted)
 feature_names = ['Age', 'Work_Location', 'Hours_Worked_Per_Week', 'Work_Life_Balance_Rating',
                  'Number_of_Virtual_Meetings', 'Productivity_Change', 'Social_Isolation_Rating',
                  'Satisfaction_with_Remote_Work', 'Company_Support_for_Remote_Work', 'Physical_Activity',

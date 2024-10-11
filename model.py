@@ -1,3 +1,5 @@
+"""This file makes the Logistic Regression model that will be deployed with streamlit"""
+
 import pandas as pd 
 import matplotlib.pyplot as plt
 import seaborn as sns
